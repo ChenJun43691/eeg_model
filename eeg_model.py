@@ -61,8 +61,8 @@ class EEGClassifier:
         y_pred = (y_pred_proba > self.threshold).astype(int)
         
         accuracy = accuracy_score(y_test, y_pred)
-        print(f"✅ XGBoost 準確率: {accuracy:.4f}")
-        print("\n📊 分類報告：")
+        print(f"XGBoost 準確率: {accuracy:.4f}")
+        print("\n分類報告：")
         print(classification_report(y_test, y_pred, target_names=["非癲癇 (0)", "癲癇 (1)"]))
 
     def predict(self, new_data):
@@ -75,11 +75,11 @@ class EEGClassifier:
     def save_model(self, model_path="eeg_xgb_model.pkl"):
         """儲存訓練好的模型"""
         joblib.dump({"model": self.model, "pca": self.pca}, model_path)
-        print(f"✅ 模型已儲存至 {model_path}")
+        print(f"模型已儲存至 {model_path}")
 
     def load_model(self, model_path="eeg_xgb_model.pkl"):
         """載入已儲存的模型"""
         model_data = joblib.load(model_path)
         self.model = model_data["model"]
         self.pca = model_data["pca"]
-        print(f"✅ 模型已從 {model_path} 載入")
+        print(f" 模型已從 {model_path} 載入")
